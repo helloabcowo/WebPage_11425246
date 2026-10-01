@@ -1,0 +1,3082 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="噗噗大大 PuPu DaDa ｜ 專為現代人設計的紓壓巧克豆。嚴選頂級莊園純黑可可，極致濃醇香，口口讓人放鬆。">
+  <title>噗噗大大 PuPu DaDa ｜ 濃醇香紓壓巧可力豆專門</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Noto+Sans+TC:wght@300;400;500;600;700;900&family=Noto+Serif+TC:wght@500;600;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       CSS Variables & Dark Theme Palette
+       品牌規格：黑色主題、濃醇香、讓人放鬆
+       ========================================================================== */
+    :root {
+      /* 品牌主色調 - 黑色系 & 濃醇深可可 */
+      --bg-void: #09090b;           /* 極致深黑基底 */
+      --bg-base: #111115;           /* 沉穩黑底色 */
+      --bg-surface: #18171d;        /* 沉浸卡片深黑 */
+      --bg-surface-hover: #222029;  /* 懸停深色 */
+      --bg-card: rgba(26, 25, 32, 0.85); /* 玻璃磨砂黑卡 */
+      
+      /* 可可濃醇香與放鬆點綴色 */
+      --cocoa-dark: #1f1412;        /* 焙煎深黑巧 */
+      --cocoa-rich: #38231c;        /* 濃醇可可黑 */
+      --cocoa-warm: #59392e;        /* 溫潤可可脂棕 */
+      --gold-accent: #d4a359;       /* 烘焙微光金 */
+      --gold-light: #f5cf8e;        /* 柔霧琥珀亮金 */
+      --gold-glow: rgba(212, 163, 89, 0.18);
+      --relax-mint: #5eead4;        /* 舒緩薄荷微光 */
+      
+      /* 文字色階 */
+      --text-main: #f5f3ef;         /* 暖白主標題與內文 */
+      --text-muted: #a39e99;        /* 柔和次要文字 */
+      --text-dim: #6b6661;          /* 弱化註釋 */
+      
+      /* 邊界與陰影 */
+      --border-subtle: rgba(212, 163, 89, 0.15);
+      --border-light: rgba(255, 255, 255, 0.08);
+      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.6);
+      --shadow-gold: 0 10px 30px rgba(212, 163, 89, 0.12);
+      
+      /* 字型系統 */
+      --font-display: "Cinzel", "Noto Serif TC", serif;
+      --font-serif: "Noto Serif TC", serif;
+      --font-sans: "Noto Sans TC", system-ui, -apple-system, sans-serif;
+      
+      /* 尺寸與過渡 */
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 24px;
+      --radius-full: 9999px;
+      --transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--text-main);
+      background-color: var(--bg-void);
+      line-height: 1.75;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(46, 29, 22, 0.35) 0%, transparent 45%),
+        radial-gradient(circle at 85% 65%, rgba(26, 20, 28, 0.45) 0%, transparent 50%),
+        radial-gradient(circle at 50% 90%, rgba(35, 24, 18, 0.3) 0%, transparent 40%);
+      background-attachment: fixed;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    button {
+      font-family: inherit;
+      border: none;
+      background: none;
+      cursor: pointer;
+      outline: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .container {
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 90px 0;
+      position: relative;
+    }
+
+    /* ==========================================================================
+       Header & Navigation
+       ========================================================================== */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(9, 9, 11, 0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: var(--transition);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #fff;
+    }
+
+    .brand-logo .bean-icon {
+      width: 34px;
+      height: 34px;
+      background: linear-gradient(135deg, var(--gold-light), var(--cocoa-rich));
+      border-radius: 50% 50% 45% 55% / 55% 45% 55% 45%;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 0 15px var(--gold-glow);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .brand-logo:hover .bean-icon {
+      transform: scale(1.1) rotate(15deg);
+    }
+
+    .brand-logo .logo-sub {
+      font-size: 0.72rem;
+      display: block;
+      color: var(--gold-accent);
+      font-family: var(--font-sans);
+      letter-spacing: 3px;
+      font-weight: 500;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      position: relative;
+      padding: 6px 0;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--gold-light);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--gold-accent);
+      transition: var(--transition);
+      border-radius: 2px;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .btn-audio-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      padding: 8px 14px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-light);
+      color: var(--text-muted);
+    }
+
+    .btn-audio-toggle.playing {
+      color: var(--gold-light);
+      border-color: var(--gold-accent);
+      background: rgba(212, 163, 89, 0.1);
+    }
+
+    .sound-waves {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 12px;
+    }
+
+    .sound-waves span {
+      width: 2px;
+      height: 4px;
+      background: currentColor;
+      border-radius: 1px;
+    }
+
+    .btn-audio-toggle.playing .sound-waves span {
+      animation: soundWave 0.8s ease-in-out infinite alternate;
+    }
+    .btn-audio-toggle.playing .sound-waves span:nth-child(2) { animation-delay: 0.2s; }
+    .btn-audio-toggle.playing .sound-waves span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes soundWave {
+      0% { height: 3px; }
+      100% { height: 12px; }
+    }
+
+    .btn-cart {
+      position: relative;
+      padding: 9px 16px;
+      background: linear-gradient(135deg, #25232c, #16151b);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .btn-cart:hover {
+      border-color: var(--gold-accent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .cart-badge {
+      background: var(--gold-accent);
+      color: #09090b;
+      font-size: 0.72rem;
+      font-weight: 700;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+    }
+
+    .btn-mobile-menu {
+      display: none;
+      font-size: 1.5rem;
+      color: var(--text-main);
+    }
+
+    /* ==========================================================================
+       Hero Section
+       ========================================================================== */
+    .hero-section {
+      min-height: 100vh;
+      padding-top: 140px;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px;
+      background: rgba(212, 163, 89, 0.08);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      color: var(--gold-light);
+      margin-bottom: 24px;
+      letter-spacing: 1px;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 4.6vw, 3.8rem);
+      line-height: 1.25;
+      font-weight: 900;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-title .gradient-text {
+      background: linear-gradient(135deg, #ffffff 20%, var(--gold-light) 65%, var(--gold-accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    .hero-en {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      color: var(--gold-accent);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+      font-weight: 600;
+      display: block;
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 1.85;
+      margin-bottom: 36px;
+      max-width: 560px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold-accent));
+      color: #0d0d10;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 14px 34px;
+      border-radius: var(--radius-full);
+      box-shadow: 0 8px 25px rgba(212, 163, 89, 0.28);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(212, 163, 89, 0.4);
+      filter: brightness(1.05);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-main);
+      border: 1px solid var(--border-light);
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 14px 28px;
+      border-radius: var(--radius-full);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--gold-accent);
+      transform: translateY(-3px);
+    }
+
+    .hero-features-bar {
+      display: flex;
+      gap: 30px;
+      border-top: 1px solid var(--border-light);
+      padding-top: 24px;
+    }
+
+    .hero-feature-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .feature-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold-accent);
+      box-shadow: 0 0 8px var(--gold-accent);
+    }
+
+    .hero-feature-item span {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    /* Hero Right - 3D 視覺擬真巧克力豆放鬆展示卡 */
+    .hero-visual-card {
+      position: relative;
+      background: radial-gradient(circle at 50% 30%, #201a18 0%, #111015 80%);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      overflow: hidden;
+    }
+
+    .hero-visual-card::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      left: -40%;
+      width: 180%;
+      height: 180%;
+      background: radial-gradient(circle, rgba(212, 163, 89, 0.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .visual-bean-container {
+      position: relative;
+      width: 240px;
+      height: 240px;
+      margin: 0 auto 30px;
+      display: grid;
+      place-items: center;
+    }
+
+    /* 純 CSS 濃醇曜石黑巧豆擬真球體 */
+    .chocolate-bean-3d {
+      width: 190px;
+      height: 190px;
+      border-radius: 52% 48% 55% 45% / 48% 54% 46% 52%;
+      background: 
+        radial-gradient(circle at 35% 25%, #3a2720 0%, #1c1412 40%, #0d0a09 85%, #050404 100%);
+      box-shadow: 
+        inset 6px 6px 16px rgba(255, 230, 200, 0.22),
+        inset -10px -10px 24px rgba(0, 0, 0, 0.9),
+        0 25px 40px rgba(0, 0, 0, 0.8),
+        0 0 35px rgba(212, 163, 89, 0.15);
+      position: relative;
+      animation: floatBean 6s ease-in-out infinite;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .chocolate-bean-3d:hover {
+      transform: scale(1.05);
+    }
+
+    /* 巧克豆高光與純可可脂紋理 */
+    .chocolate-bean-3d::after {
+      content: '';
+      position: absolute;
+      top: 22%;
+      left: 26%;
+      width: 65px;
+      height: 35px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(255, 255, 255, 0.38) 0%, transparent 75%);
+      transform: rotate(-35deg);
+      filter: blur(2px);
+    }
+
+    /* 巧克豆凹痕 */
+    .chocolate-bean-3d::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 15%;
+      width: 70%;
+      height: 2px;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 50%;
+      transform: rotate(20deg);
+      box-shadow: 0 1px 1px rgba(255, 255, 255, 0.1);
+    }
+
+    @keyframes floatBean {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-14px) rotate(4deg);
+      }
+    }
+
+    .floating-pill {
+      position: absolute;
+      background: rgba(18, 17, 23, 0.92);
+      border: 1px solid var(--border-subtle);
+      padding: 10px 18px;
+      border-radius: var(--radius-full);
+      font-size: 0.82rem;
+      color: var(--text-main);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .pill-1 {
+      top: 15px;
+      left: -15px;
+      animation: floatPill 5s ease-in-out infinite alternate;
+    }
+
+    .pill-2 {
+      bottom: 25px;
+      right: -15px;
+      animation: floatPill 5s ease-in-out infinite alternate-reverse;
+    }
+
+    @keyframes floatPill {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-8px); }
+    }
+
+    .card-footer-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .stat-box h4 {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      color: var(--gold-light);
+    }
+
+    .stat-box p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       Brand Story & 4 濃醇香工藝
+       ========================================================================== */
+    .section-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 60px;
+    }
+
+    .section-eyebrow {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      letter-spacing: 3px;
+      color: var(--gold-accent);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3.2vw, 2.7rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.35;
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .story-manifesto {
+      background: linear-gradient(145deg, #18151b, #100f13);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 50px 60px;
+      margin-bottom: 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .manifesto-quote {
+      font-family: var(--font-serif);
+      font-size: 1.75rem;
+      line-height: 1.5;
+      color: var(--gold-light);
+      border-left: 3px solid var(--gold-accent);
+      padding-left: 24px;
+    }
+
+    .manifesto-body p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-bottom: 16px;
+    }
+
+    .manifesto-body p strong {
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+
+    .craft-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .craft-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 32px 24px;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .craft-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold-accent), transparent);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .craft-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      background: var(--bg-surface-hover);
+    }
+
+    .craft-card:hover::before {
+      opacity: 1;
+    }
+
+    .craft-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: rgba(212, 163, 89, 0.1);
+      display: grid;
+      place-items: center;
+      font-size: 1.5rem;
+      color: var(--gold-light);
+      margin-bottom: 20px;
+    }
+
+    .craft-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .craft-card p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ==========================================================================
+       Stress Relief & Relaxation Zone (功能：讓人放鬆核心展示)
+       ========================================================================== */
+    .relax-zone-wrapper {
+      background: radial-gradient(ellipse at 50% 0%, #201716 0%, #0d0c11 75%);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 60px 40px;
+      margin-bottom: 40px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+    }
+
+    .relax-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 45px;
+      flex-wrap: wrap;
+    }
+
+    .relax-tab-btn {
+      padding: 12px 26px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-light);
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .relax-tab-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .relax-tab-btn.active {
+      background: linear-gradient(135deg, var(--cocoa-rich), var(--bg-surface));
+      color: var(--gold-light);
+      border-color: var(--gold-accent);
+      box-shadow: 0 0 20px var(--gold-glow);
+    }
+
+    .relax-panel {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .relax-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 模組一：噗噗巧豆捏捏消煩惱 (Bean Popper) */
+    .popper-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .popper-score-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      margin-top: 15px;
+    }
+
+    .score-badge {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      padding: 8px 20px;
+      border-radius: var(--radius-full);
+      font-size: 0.92rem;
+      color: var(--gold-light);
+    }
+
+    .popper-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 18px;
+      max-width: 650px;
+      margin: 0 auto 30px;
+      padding: 24px;
+      background: rgba(14, 13, 17, 0.8);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-light);
+    }
+
+    .pop-bean {
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #3d2922, #18110f);
+      box-shadow: 
+        inset 2px 2px 6px rgba(255, 255, 255, 0.2),
+        inset -4px -4px 10px rgba(0, 0, 0, 0.8),
+        0 6px 12px rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: grid;
+      place-items: center;
+    }
+
+    .pop-bean::after {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(212, 163, 89, 0.2);
+    }
+
+    .pop-bean:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 14px var(--gold-glow);
+    }
+
+    .pop-bean:active, .pop-bean.popped {
+      transform: scale(0.85);
+      background: #110d0c;
+      box-shadow: 
+        inset 3px 3px 8px rgba(0, 0, 0, 0.9),
+        0 1px 2px rgba(0, 0, 0, 0.3);
+      filter: grayscale(0.5);
+    }
+
+    .pop-bean.popped::after {
+      background: transparent;
+    }
+
+    .popper-controls {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .pop-message-box {
+      max-width: 500px;
+      margin: 20px auto 0;
+      text-align: center;
+      font-size: 0.95rem;
+      color: var(--gold-light);
+      min-height: 28px;
+      font-style: italic;
+    }
+
+    /* 模組二：可可深呼吸放鬆儀 (4-7-8 Breathing Guide) */
+    .breathing-box {
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    .breathing-circle-wrapper {
+      position: relative;
+      width: 250px;
+      height: 250px;
+      margin: 0 auto 35px;
+      display: grid;
+      place-items: center;
+    }
+
+    .breathing-circle {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #3d231a 0%, #151011 80%);
+      border: 2px solid var(--gold-accent);
+      box-shadow: 0 0 35px var(--gold-glow);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: transform 4s ease-in-out, box-shadow 4s ease-in-out;
+    }
+
+    .breathing-circle.inhale {
+      transform: scale(1.35);
+      box-shadow: 0 0 60px rgba(212, 163, 89, 0.45);
+      border-color: var(--gold-light);
+    }
+
+    .breathing-circle.hold {
+      transform: scale(1.35);
+      border-color: var(--relax-mint);
+      box-shadow: 0 0 50px rgba(94, 234, 212, 0.3);
+    }
+
+    .breathing-circle.exhale {
+      transform: scale(0.9);
+      box-shadow: 0 0 20px rgba(212, 163, 89, 0.15);
+      border-color: var(--gold-accent);
+    }
+
+    .breath-status-text {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .breath-timer-text {
+      font-size: 0.95rem;
+      color: var(--gold-light);
+      font-family: var(--font-display);
+    }
+
+    .breathing-instructions {
+      max-width: 520px;
+      margin: 0 auto 25px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    /* 模組三：白噪音放鬆可可工坊 (Ambient Sounds) */
+    .ambient-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .ambient-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      text-align: center;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .ambient-card:hover {
+      border-color: var(--border-subtle);
+      transform: translateY(-4px);
+    }
+
+    .ambient-card.active {
+      border-color: var(--gold-accent);
+      background: rgba(212, 163, 89, 0.08);
+      box-shadow: 0 0 25px var(--gold-glow);
+    }
+
+    .ambient-icon {
+      font-size: 2.2rem;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .ambient-card h4 {
+      font-size: 1.05rem;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .ambient-card p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .ambient-card .state-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+    }
+
+    .ambient-card.active .state-badge {
+      background: var(--gold-accent);
+      color: #09090b;
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       Product Showcase (用途：巧可力豆特選)
+       ========================================================================== */
+    .product-filter-bar {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 9px 22px;
+      border-radius: var(--radius-full);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .filter-btn:hover {
+      color: #fff;
+      border-color: var(--border-subtle);
+    }
+
+    .filter-btn.active {
+      background: var(--gold-accent);
+      color: #0d0d10;
+      font-weight: 700;
+      border-color: var(--gold-accent);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .product-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 30px 24px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: var(--transition);
+      overflow: hidden;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--border-subtle);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    }
+
+    .product-tag {
+      position: absolute;
+      top: 18px;
+      left: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      background: rgba(212, 163, 89, 0.12);
+      color: var(--gold-light);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .product-image-box {
+      width: 140px;
+      height: 140px;
+      margin: 20px auto 25px;
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+
+    /* 巧豆卡片動態外觀 */
+    .bean-thumb {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 25%, #3e261e, #140d0b);
+      box-shadow: 
+        inset 4px 4px 10px rgba(255, 230, 200, 0.25),
+        inset -6px -6px 15px rgba(0, 0, 0, 0.9),
+        0 15px 25px rgba(0, 0, 0, 0.6);
+      transition: transform 0.4s ease;
+      position: relative;
+    }
+
+    .product-card:hover .bean-thumb {
+      transform: scale(1.1) rotate(12deg);
+    }
+
+    /* 各款外觀微調 */
+    .bean-thumb.sea-salt {
+      background: radial-gradient(circle at 35% 25%, #462b21, #180f0c);
+    }
+    .bean-thumb.sea-salt::before {
+      content: '🧂';
+      position: absolute;
+      bottom: -4px;
+      right: -4px;
+      font-size: 1.1rem;
+    }
+
+    .bean-thumb.hazelnut {
+      background: radial-gradient(circle at 35% 25%, #543425, #1d100b);
+    }
+    .bean-thumb.hazelnut::before {
+      content: '🌰';
+      position: absolute;
+      bottom: -4px;
+      right: -4px;
+      font-size: 1.1rem;
+    }
+
+    .bean-thumb.lavender {
+      background: radial-gradient(circle at 35% 25%, #36222c, #160e14);
+    }
+    .bean-thumb.lavender::before {
+      content: '🪻';
+      position: absolute;
+      bottom: -4px;
+      right: -4px;
+      font-size: 1.1rem;
+    }
+
+    .bean-thumb.popping {
+      background: radial-gradient(circle at 35% 25%, #3f221c, #180c09);
+    }
+    .bean-thumb.popping::before {
+      content: '✨';
+      position: absolute;
+      bottom: -4px;
+      right: -4px;
+      font-size: 1.1rem;
+    }
+
+    .bean-thumb.whiskey {
+      background: radial-gradient(circle at 35% 25%, #4b2a1a, #150b07);
+    }
+    .bean-thumb.whiskey::before {
+      content: '🥃';
+      position: absolute;
+      bottom: -4px;
+      right: -4px;
+      font-size: 1.1rem;
+    }
+
+    .product-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .product-flavor-note {
+      font-size: 0.85rem;
+      color: var(--gold-light);
+      margin-bottom: 12px;
+      font-style: italic;
+    }
+
+    .product-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .flavor-meter {
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      margin-bottom: 20px;
+    }
+
+    .meter-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .meter-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .meter-bar {
+      width: 110px;
+      height: 5px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+
+    .meter-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--cocoa-warm), var(--gold-accent));
+      border-radius: var(--radius-full);
+    }
+
+    .product-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .product-price {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--gold-light);
+    }
+
+    .product-price small {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      font-weight: 400;
+    }
+
+    .btn-add-cart {
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-add-cart:hover {
+      background: var(--gold-accent);
+      color: #09090b;
+      border-color: var(--gold-accent);
+    }
+
+    /* ==========================================================================
+       Mood Picker Section (解憂處方輪盤)
+       ========================================================================== */
+    .mood-box {
+      background: linear-gradient(135deg, #18141b, #111014);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 50px 40px;
+      text-align: center;
+    }
+
+    .mood-selectors {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .mood-btn {
+      padding: 12px 24px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-light);
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mood-btn:hover {
+      color: #fff;
+      border-color: var(--border-subtle);
+    }
+
+    .mood-btn.active {
+      background: var(--gold-accent);
+      color: #09090b;
+      font-weight: 700;
+      border-color: var(--gold-accent);
+      box-shadow: 0 0 20px var(--gold-glow);
+    }
+
+    .prescription-card {
+      max-width: 600px;
+      margin: 0 auto;
+      background: rgba(9, 9, 11, 0.7);
+      border: 1px dashed var(--gold-accent);
+      border-radius: var(--radius-md);
+      padding: 30px;
+      text-align: left;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .prescription-badge {
+      display: inline-block;
+      font-size: 0.78rem;
+      padding: 3px 10px;
+      background: rgba(212, 163, 89, 0.15);
+      color: var(--gold-light);
+      border-radius: var(--radius-full);
+      margin-bottom: 12px;
+    }
+
+    .prescription-title {
+      font-size: 1.35rem;
+      color: #fff;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .prescription-text {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    .prescription-ritual {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      color: var(--gold-light);
+    }
+
+    /* ==========================================================================
+       Customer Reviews / Stories
+       ========================================================================== */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+    }
+
+    .review-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 30px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .review-stars {
+      color: var(--gold-accent);
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+    }
+
+    .review-text {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .author-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--cocoa-warm), #1b1920);
+      display: grid;
+      place-items: center;
+      font-size: 1.2rem;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .author-name {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .author-desc {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+    }
+
+    /* ==========================================================================
+       FAQ Accordion
+       ========================================================================== */
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      margin-bottom: 14px;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .faq-item:hover {
+      border-color: var(--border-subtle);
+    }
+
+    .faq-question {
+      width: 100%;
+      text-align: left;
+      padding: 20px 24px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .faq-question .icon {
+      font-size: 1.2rem;
+      color: var(--gold-accent);
+      transition: transform 0.3s;
+    }
+
+    .faq-item.active .faq-question .icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0, 1, 0, 1);
+      padding: 0 24px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 300px;
+      padding-bottom: 22px;
+      transition: max-height 0.35s ease-in-out;
+    }
+
+    /* ==========================================================================
+       Footer
+       ========================================================================== */
+    .site-footer {
+      background: #08080a;
+      border-top: 1px solid var(--border-light);
+      padding: 70px 0 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .footer-brand p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 14px;
+      max-width: 320px;
+      line-height: 1.7;
+    }
+
+    .footer-column h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .footer-column h4::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 24px;
+      height: 2px;
+      background: var(--gold-accent);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .footer-links a:hover {
+      color: var(--gold-light);
+      padding-left: 4px;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      color: #fff;
+      font-size: 0.88rem;
+      outline: none;
+    }
+
+    .newsletter-input:focus {
+      border-color: var(--gold-accent);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* ==========================================================================
+       Shopping Cart Drawer & Toast
+       ========================================================================== */
+    .cart-drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .cart-drawer-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: min(400px, 90vw);
+      height: 100vh;
+      background: #141318;
+      border-left: 1px solid var(--border-subtle);
+      z-index: 2001;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      padding: 30px;
+    }
+
+    .cart-drawer.active {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .drawer-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .drawer-close {
+      font-size: 1.5rem;
+      color: var(--text-muted);
+    }
+
+    .drawer-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 0;
+    }
+
+    .empty-cart-msg {
+      text-align: center;
+      color: var(--text-dim);
+      margin-top: 50px;
+      font-size: 0.95rem;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 12px;
+      border: 1px solid var(--border-light);
+    }
+
+    .cart-item-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .cart-item-price {
+      font-size: 0.82rem;
+      color: var(--gold-light);
+    }
+
+    .drawer-footer {
+      border-top: 1px solid var(--border-light);
+      padding-top: 20px;
+    }
+
+    .drawer-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #fff;
+    }
+
+    .toast-container {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(20, 19, 25, 0.95);
+      border: 1px solid var(--gold-accent);
+      color: var(--gold-light);
+      padding: 12px 24px;
+      border-radius: var(--radius-full);
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      z-index: 3000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .toast-container.show {
+      opacity: 1;
+      transform: translate(-50%, -10px);
+    }
+
+    /* ==========================================================================
+       Responsive Breakpoints
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero-description {
+        margin: 0 auto 36px;
+      }
+      .hero-cta-group {
+        justify-content: center;
+      }
+      .hero-features-bar {
+        justify-content: center;
+      }
+      .story-manifesto {
+        grid-template-columns: 1fr;
+        padding: 40px 30px;
+      }
+      .craft-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .reviews-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .btn-mobile-menu {
+        display: block;
+      }
+      .popper-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .ambient-grid {
+        grid-template-columns: 1fr;
+      }
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       Site Header
+       ========================================================================== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="brand-logo">
+        <div class="bean-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#110e0c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"></path>
+            <path d="M12 6c-3 3-3 9 0 12"></path>
+          </svg>
+        </div>
+        <div>
+          噗噗大大
+          <span class="logo-sub">PUPU DADA • CHOCO</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#story" class="nav-link">品牌故事</a></li>
+          <li><a href="#relax-zone" class="nav-link">讓人放鬆館</a></li>
+          <li><a href="#products" class="nav-link">巧豆系列</a></li>
+          <li><a href="#mood" class="nav-link">解憂處方</a></li>
+          <li><a href="#reviews" class="nav-link">顧客心聲</a></li>
+          <li><a href="#faq" class="nav-link">常見問題</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <!-- 放鬆白噪音背景音樂開關 (純 Web Audio 即時合成) -->
+        <button id="globalAudioToggle" class="btn-audio-toggle" title="切換放鬆背景音景">
+          <div class="sound-waves">
+            <span></span><span></span><span></span>
+          </div>
+          <span id="audioBtnText">放鬆音景</span>
+        </button>
+
+        <button id="openCartBtn" class="btn-cart">
+          <span>紓壓籃</span>
+          <span id="cartCount" class="cart-badge">0</span>
+        </button>
+
+        <button id="mobileMenuBtn" class="btn-mobile-menu" aria-label="開啟選單">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       Hero Section
+       規格落實：噗噗大大、巧可力豆、一般人、濃醇香、黑色、讓人放鬆
+       ========================================================================== -->
+  <main>
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-text-content">
+          <div class="hero-badge">
+            <span>✦</span> 專為現代人設計的極致黑巧紓壓體驗 <span>✦</span>
+          </div>
+          <span class="hero-en">PUPU DADA — ARTISANAL DARK CHOCOLATE BEANS</span>
+          <h1 class="hero-title">
+            每一顆<span class="gradient-text">濃醇香</span>，<br>
+            都是為你準備的放鬆時光。
+          </h1>
+          <p class="hero-description">
+            在匆忙喧囂的日常裡，讓時間為你慢下來。噗噗大大嚴選莊園級深黑可可豆，以 72 小時微米慢磨工藝釋放純可可脂的絲滑溫潤。輕咬時一聲清脆的「噗！」，舌尖隨即綻放濃郁回甘，撫平整日的緊繃與焦慮。
+          </p>
+          <div class="hero-cta-group">
+            <a href="#relax-zone" class="btn-primary">
+              <span>立即進入放鬆館</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#products" class="btn-secondary">
+              <span>品味濃醇香系列</span>
+            </a>
+          </div>
+          <div class="hero-features-bar">
+            <div class="hero-feature-item">
+              <div class="feature-dot"></div>
+              <span>100% 天然純可可脂</span>
+            </div>
+            <div class="hero-feature-item">
+              <div class="feature-dot"></div>
+              <span>深邃曜石黑調美學</span>
+            </div>
+            <div class="hero-feature-item">
+              <div class="feature-dot"></div>
+              <span>ASMR 酥脆療癒聽感</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual-card">
+          <div class="floating-pill pill-1">
+            <span>✨</span> 釋放焦慮指數 -85%
+          </div>
+          <div class="visual-bean-container">
+            <!-- 擬真 3D 質感深黑巧克豆，點擊可播放療癒音效 -->
+            <div id="heroBean3D" class="chocolate-bean-3d" title="點我聽聽巧克豆的聲音"></div>
+          </div>
+          <div class="floating-pill pill-2">
+            <span>🍫</span> 72 小時極致濃醇香
+          </div>
+          <div class="card-footer-stats">
+            <div class="stat-box">
+              <h4>85%</h4>
+              <p>莊園級黑巧純度</p>
+            </div>
+            <div class="stat-box">
+              <h4>18μm</h4>
+              <p>微米級絲滑融心</p>
+            </div>
+            <div class="stat-box">
+              <h4>0%</h4>
+              <p>人工香精與負擔</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Brand Story & 4 濃醇香哲學
+         ========================================================================== -->
+    <section id="story" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">OUR PHILOSOPHY</span>
+          <h2 class="section-title">為什麼叫「噗噗大大」？</h2>
+          <p class="section-desc">
+            一顆小巧的黑巧豆，如何成為大人世界裡的避風港？
+          </p>
+        </div>
+
+        <div class="story-manifesto">
+          <div class="manifesto-quote">
+            「噗噗」是咬下巧豆時的清脆破裂，<br>
+            也是深呼吸後如釋重負的嘆息。
+          </div>
+          <div class="manifesto-body">
+            <p>
+              現代人每天有太多的會議、太多的訊息、太多的期待要回應。我們相信，放鬆不一定需要千里迢迢的休假，有時只需要口袋裡的一罐<strong>噗噗大大巧可力豆</strong>。
+            </p>
+            <p>
+              「大大」代表著我們對純粹品質的大度堅持：不摻雜代可可脂、不妥協化學香精。用深黑沉穩的極簡姿態，給予每位一般人最溫柔而強大的放鬆支持。
+            </p>
+          </div>
+        </div>
+
+        <!-- 濃醇香 + 讓人放鬆 4 大核心工藝 -->
+        <div class="craft-grid">
+          <div class="craft-card">
+            <div class="craft-icon">🌑</div>
+            <h3>【濃】深邃黑巧</h3>
+            <p>嚴選 70%~85% 厄瓜多莊園黑可可，富含高活性可可多酚與鎂離子，從神經元深度舒緩緊繃情緒。</p>
+          </div>
+          <div class="craft-card">
+            <div class="craft-icon">🍯</div>
+            <h3>【醇】天鵝絨融感</h3>
+            <p>天然純可可脂經 72 小時低溫石磨精煉，細膩度達 18 微米，如絲緞般在舌尖無阻礙溫熱化開。</p>
+          </div>
+          <div class="craft-card">
+            <div class="craft-icon">🪵</div>
+            <h3>【香】慢焙堅果芳香</h3>
+            <p>以低溫慢火烘焙鎖住可可自帶的木質燻香與堅果底蘊，不刺鼻、不甜膩，每一口都是深長的天然芬芳。</p>
+          </div>
+          <div class="craft-card">
+            <div class="craft-icon">🕊️</div>
+            <h3>【靜】沉浸放鬆儀式</h3>
+            <p>曜石黑消光金屬罐密封鎖香，隨身攜帶。工作累了、心煩了，倒出兩顆，就是五分鐘的私密靜心禪。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         讓人放鬆互動體驗館 (功能：讓人放鬆)
+         ========================================================================== -->
+    <section id="relax-zone" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">INTERACTIVE RELAXATION</span>
+          <h2 class="section-title">噗噗大大 ． 讓人放鬆館</h2>
+          <p class="section-desc">
+            結合 ASMR 聲音回饋、深呼吸節奏引導與自然環境音，讓壓力在此刻徹底歸零。
+          </p>
+        </div>
+
+        <div class="relax-zone-wrapper">
+          <!-- 放鬆功能分頁切換 -->
+          <div class="relax-tabs">
+            <button class="relax-tab-btn active" data-tab="popper">
+              <span>🔘</span> 巧豆捏捏消煩惱
+            </button>
+            <button class="relax-tab-btn" data-tab="breathing">
+              <span>🫁</span> 4-7-8 可可呼吸儀
+            </button>
+            <button class="relax-tab-btn" data-tab="ambient">
+              <span>🎧</span> 白噪音可可工坊
+            </button>
+          </div>
+
+          <!-- 分頁 1：巧豆捏捏消煩惱 (Pop Clicker) -->
+          <div id="tab-popper" class="relax-panel active">
+            <div class="popper-header">
+              <h3 style="font-size:1.35rem; color:#fff; margin-bottom:8px;">手指動一動，捏爆一顆顆煩惱巧豆</h3>
+              <p style="font-size:0.9rem; color:var(--text-muted);">
+                點擊巧豆即可感受軟 Q 彈跳與清脆 ASMR「啵！」聲（內建 Web Audio 即時柔和合成聲）。
+              </p>
+              <div class="popper-score-bar">
+                <div class="score-badge">
+                  已釋放壓力指數：<strong id="popCount" style="color:var(--gold-light); font-size:1.15rem;">0</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- 24 顆互動巧豆網格 -->
+            <div class="popper-grid" id="popperGrid">
+              <!-- JS 動態生成巧豆 -->
+            </div>
+
+            <div class="popper-controls">
+              <button id="resetPopperBtn" class="btn-secondary" style="font-size:0.88rem; padding:8px 20px;">
+                🔄 重新填滿巧豆
+              </button>
+            </div>
+            <div id="popMessageBox" class="pop-message-box">
+              「深吸一口氣，可可的香氣正在包圍你。」
+            </div>
+          </div>
+
+          <!-- 分頁 2：4-7-8 深呼吸放鬆引導 -->
+          <div id="tab-breathing" class="relax-panel">
+            <div class="breathing-box">
+              <div class="breathing-circle-wrapper">
+                <div id="breathCircle" class="breathing-circle">
+                  <div id="breathStatus" class="breath-status-text">準備放鬆</div>
+                  <div id="breathTimer" class="breath-timer-text">點擊開始</div>
+                </div>
+              </div>
+              <p class="breathing-instructions">
+                跟著圓圈的節奏：<strong>吸氣 4 秒</strong> 讓空氣填滿胸腔，<strong>屏息 7 秒</strong> 感受平靜，<strong>慢吐氣 8 秒</strong> 吐出所有雜念與疲憊。
+              </p>
+              <button id="toggleBreathBtn" class="btn-primary" style="margin: 0 auto;">
+                ▶ 開始呼吸放鬆
+              </button>
+            </div>
+          </div>
+
+          <!-- 分頁 3：白噪音可可工坊 (純 Web Audio 振盪器與濾波器生成) -->
+          <div id="tab-ambient" class="relax-panel">
+            <div style="text-align:center; max-width:600px; margin:0 auto 30px;">
+              <h3 style="font-size:1.35rem; color:#fff; margin-bottom:8px;">沉浸式可可白噪音</h3>
+              <p style="font-size:0.9rem; color:var(--text-muted);">
+                完全無需外部音樂檔案！點擊即可透過瀏覽器聲學合成器播放柔和音景，伴您閱讀、工作或冥想。
+              </p>
+            </div>
+            <div class="ambient-grid">
+              <div class="ambient-card" data-sound="rain">
+                <div class="ambient-icon">🌧️</div>
+                <h4>深宵窗邊夜雨</h4>
+                <p>柔和雨滴打在黑巧工坊玻璃上，洗滌疲憊思緒。</p>
+                <span class="state-badge">點擊播放</span>
+              </div>
+              <div class="ambient-card" data-sound="fire">
+                <div class="ambient-icon">🔥</div>
+                <h4>柴火慢烘微響</h4>
+                <p>壁爐木柴慢燒的噼啪聲，伴隨深黑可可的暖香。</p>
+                <span class="state-badge">點擊播放</span>
+              </div>
+              <div class="ambient-card" data-sound="hum">
+                <div class="ambient-icon">🧘</div>
+                <h4>432Hz 冥想純音</h4>
+                <p>療癒頻率溫和振動，深層舒展大腦壓力神經。</p>
+                <span class="state-badge">點擊播放</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Products Section (用途：巧可力豆全系列)
+         ========================================================================== -->
+    <section id="products" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">OUR BEANS COLLECTION</span>
+          <h2 class="section-title">濃醇香 ． 巧可力豆特選</h2>
+          <p class="section-desc">
+            每一顆圓潤的巧豆，都經過無數次比例盲測，專為撫平不同時刻的壓力而調配。
+          </p>
+        </div>
+
+        <!-- 篩選列 -->
+        <div class="product-filter-bar">
+          <button class="filter-btn active" data-filter="all">全部巧豆 (6)</button>
+          <button class="filter-btn" data-filter="dark">深黑靜心系</button>
+          <button class="filter-btn" data-filter="crispy">香脆爆漿感</button>
+          <button class="filter-btn" data-filter="calm">晚安舒眠香</button>
+        </div>
+
+        <!-- 產品卡片網格 -->
+        <div class="products-grid">
+          <!-- 產品 1 -->
+          <div class="product-card" data-category="dark">
+            <span class="product-tag">人氣 NO.1 撫平急躁</span>
+            <div class="product-image-box">
+              <div class="bean-thumb"></div>
+            </div>
+            <h3>85% 曜石極濃黑巧豆</h3>
+            <div class="product-flavor-note">厄瓜多單一莊園可可 ｜ 堅果煙燻調</div>
+            <p class="product-desc">
+              不含一滴多餘糖分，深黑微苦隨後化作深厚甘甜。高濃度可可多酚能迅速安撫亢奮的神經，適合高壓會議或專注工作時品嚐。
+            </p>
+            <div class="flavor-meter">
+              <div class="meter-row">
+                <span>濃醇香度</span>
+                <div class="meter-bar"><div class="meter-fill" style="width: 95%;"></div></div>
+              </div>
+              <div class="meter-row">
+                <span>放鬆指數</span>
+                <div class="meter-bar"><div class="meter-fill" style="width: 90%;"></div></div>
+              </div>
+            </div>
+            <div class="product-card-footer">
+              <div class="product-price">NT$ 280 <small>/ 罐 (120g)</small></div>
+              <button class="btn-add-cart" onclick="addToCart('85% 曜石極濃黑巧豆', 280)">
+                <span>+ 放鬆籃</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 產品 2 -->
+          <div class="product-card" data-category="crispy">
+            <span class="product-tag">鹹甜療癒首選</span>
+            <div class="product-image-box">
+              <div class="bean-thumb sea-salt"></div>
+            </div>
+            <h3>72% 法國海鹽焦糖巧豆</h3>
+            <div class="product-flavor-note">布列塔尼鹽之花 ｜ 手熬琥珀焦糖脆心</div>
+            <p class="product-desc">
+              外層是醇厚黑巧克力，輕輕咬破，微鹹的海鹽與香甜的太妃糖脆心瞬間爆發，層次交疊，宛如味蕾上的小確幸煙火。
+            </p>
+            <div class="flavor-meter">
+              <div class="meter-row">
+                <span>濃醇香度</span>
+                <div class="meter-bar"><div class="meter-fill" style="width: 88%;"></div></div>
+              </div>
+              <div class="meter-row">
+                <span>放鬆指數</span>
+                <div class="meter-bar"><div class="meter-fill" style="width: 92%;"></div></div>
+              </div>
+            </div>
+            <div class="product-card-footer">
+              <div class="product-price">NT$ 290 <small>/ 罐 (120g)</small></div>
+              <button class="btn-add-cart" onclick="addToCart('72% 法國海鹽焦糖巧豆', 290)">
+                <span>+ 放鬆籃</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 產品 3 -->
+          <div class="product-card" data-category="crispy">
+            <span class="product-tag">酥脆香氣爆棚</span>
+            <div class="product-image-box">
+              <div class="bean-thumb hazelnut"></div>
+            </div>
+            <h3>68% 大火深焙整粒榛果巧豆</h3>
+            <div class="product-flavor-note">義大利整粒皮埃蒙特榛果 ｜ 慢火炭烤</div>
+            <p class="product-desc">
+              包覆著完整烘烤的大粒榛果，入口先是柔滑黑巧，緊接著是嘎嘣脆的堅果香油脂，香醇撲鼻，是嘴饞時最滿足的陪伴。
+            </p>
+            <div class="flavor-meter">
+              <div class="meter-row">
+                <span>濃醇香度</span>
+                <div class="meter-bar"><div class="meter-fill" style="width: 92%;"></div></div>
+              </div>
+              <div class="meter-row">
+                <span>放鬆指數</span>
+                <div class="meter-bar"><div class="meter-fill" style="width: 86%;"></div></div>
+              </div>
+            </div>
+            <div class="product-card-footer">
+              <div class="product-price">NT$ 320 <small>/ 罐 (130g)</small></div>
+              <button class="btn-add-cart" onclick="addToCart('68% 深焙整粒榛果巧豆', 320)">
+                <span>+ 放鬆籃</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 產品 4 -->
+          <div class="product-card" data-category="calm">
+            <span class="product-tag">夜間低負擔 ． 好眠</span>
+            <div class="product-image-box">
+              <div class="bean-thumb lavender"></div>
+            </div>
+            <h3>70% 晚安洋甘菊薰衣草巧豆</h3>
+            <div class="product-flavor-note">普羅旺斯有機薰衣草 ｜ 埃及洋甘菊淬取</div>
+            <p class="product-desc">
+              專為睡前儀式打造。低咖啡因精選配方融入淡雅芳草氣息，在口中融化成溫暖的安神花草茶香，伴隨你進入深沉睡眠。
+            </p>
+            <div class="flavor-meter">
+              <div class="meter-row">
+                <span>濃醇香度</span>
+                <div class="meter-bar"><div class="meter-fill" style="width: 82%;"></div></div>
+              </div>
+              <div class="meter-row">
+                <span>放鬆指數</span>
+                <div class="meter-bar"><div class="meter-fill" style="width: 98%;"></div></div>
+              </div>
+            </div>
+            <div class="product-card-footer">
+              <div class="product-price">NT$ 310 <small>/ 罐 (120g)</small></div>
+              <button class="btn-add-cart" onclick="addToCart('70% 晚安洋甘菊薰衣草巧豆', 310)">
+                <span>+ 放鬆籃</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 產品 5 -->
+          <div class="product-card" data-category="crispy">
+            <span class="product-tag">趣味釋壓 ． 歡樂啵啵</span>
+            <div class="product-image-box">
+              <div class="bean-thumb popping"></div>
+            </div>
+            <h3>噗噗 ． 啵啵脆米跳跳黑巧豆</h3>
+            <div class="product-flavor-note">玄米脆粒 ｜ 微氣泡跳跳晶球</div>
+            <p class="product-desc">
+              童趣又高級的解壓驚喜！咀嚼間微小氣泡在舌尖歡樂躍動，搭配醇黑巧克力的包覆感，把生活中的沉悶統統跳開。
+            </p>
+            <div class="flavor-meter">
+              <div class="meter-row">
+                <span>濃醇香度</span>
+                <div class="meter-bar"><div class="meter-fill" style="width: 84%;"></div></div>
+              </div>
+              <div class="meter-row">
+                <span>放鬆指數</span>
+                <div class="meter-bar"><div class="meter-fill" style="width: 94%;"></div></div>
+              </div>
+            </div>
+            <div class="product-card-footer">
+              <div class="product-price">NT$ 270 <small>/ 罐 (110g)</small></div>
+              <button class="btn-add-cart" onclick="addToCart('噗噗．啵啵脆米跳跳黑巧豆', 270)">
+                <span>+ 放鬆籃</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 產品 6 -->
+          <div class="product-card" data-category="dark">
+            <span class="product-tag">大人專屬 ． 微醺夜</span>
+            <div class="product-image-box">
+              <div class="bean-thumb whiskey"></div>
+            </div>
+            <h3>午夜泥煤威士忌流心黑巧豆</h3>
+            <div class="product-flavor-note">蘇格蘭單一麥芽橡木桶 ｜ 75% 濃巧球體</div>
+            <p class="product-desc">
+              輕輕破殼，金黃甘洌的威士忌流心瞬間溫熱咽喉，與深黑可可的苦甜形成絕妙圓融。洗去整日奔波，今晚只屬於你自己。
+            </p>
+            <div class="flavor-meter">
+              <div class="meter-row">
+                <span>濃醇香度</span>
+                <div class="meter-bar"><div class="meter-fill" style="width: 96%;"></div></div>
+              </div>
+              <div class="meter-row">
+                <span>放鬆指數</span>
+                <div class="meter-bar"><div class="meter-fill" style="width: 95%;"></div></div>
+              </div>
+            </div>
+            <div class="product-card-footer">
+              <div class="product-price">NT$ 360 <small>/ 罐 (120g)</small></div>
+              <button class="btn-add-cart" onclick="addToCart('午夜泥煤威士忌流心黑巧豆', 360)">
+                <span>+ 放鬆籃</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Mood Reliever Picker (解憂處方專屬推薦)
+         ========================================================================== -->
+    <section id="mood" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">MOOD PRESCRIPTION</span>
+          <h2 class="section-title">今日解憂處方籤</h2>
+          <p class="section-desc">
+            點選你現在最想放下的狀態，噗噗大大為你量身調製最適合的可可解藥。
+          </p>
+        </div>
+
+        <div class="mood-box">
+          <div class="mood-selectors">
+            <button class="mood-btn active" data-mood="overload">
+              <span>🤯</span> 腦袋打結、事情做不完
+            </button>
+            <button class="mood-btn" data-mood="slump">
+              <span>🥱</span> 下午三點、呵欠靈魂出竅
+            </button>
+            <button class="mood-btn" data-mood="blue">
+              <span>🌧️</span> 心情低落、想被溫柔擁抱
+            </button>
+            <button class="mood-btn" data-mood="insomnia">
+              <span>🌙</span> 夜深人靜、翻來覆去難眠
+            </button>
+          </div>
+
+          <!-- 解憂處方動態展示卡 -->
+          <div id="prescriptionCard" class="prescription-card">
+            <span class="prescription-badge">處方代號 #01 • 腦力急救</span>
+            <h3 class="prescription-title">為您開立：85% 曜石極濃黑巧豆 + 3分鐘閉眼瞑想</h3>
+            <p class="prescription-text">
+              高強度的腦力消耗需要純黑巧克力的抗氧化多酚來重啟大腦血流。苦甜的深邃滋味會打斷焦慮迴圈，讓紊亂的思緒迅速降溫沉澱。
+            </p>
+            <div class="prescription-ritual">
+              💡 <strong>放鬆小儀式：</strong> 取出兩顆黑巧豆含在舌面上，不要立刻咀嚼，慢慢等待體溫融化可可脂，深吸氣三次。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Customer Reviews (一般人的真實放鬆反饋)
+         ========================================================================== -->
+    <section id="reviews" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">HEALING STORIES</span>
+          <h2 class="section-title">他們在黑巧中找回平靜</h2>
+          <p class="section-desc">
+            全台超過 15,000 位在職場與生活中努力的一般人，共同見證的放鬆秘密。
+          </p>
+        </div>
+
+        <div class="reviews-grid">
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">
+              「身為後端工程師，每天對著幾千行 code 眼睛超酸。桌上放一罐噗噗大大的海鹽焦糖巧豆，下午卡 bug 時吃兩顆，咬破那脆心的聲音真的超級解壓！」
+            </p>
+            <div class="review-author">
+              <div class="author-avatar">💻</div>
+              <div>
+                <div class="author-name">Alex Lin</div>
+                <div class="author-desc">軟體架構師 ｜ 台北市</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">
+              「晚上哄睡小孩後，終於屬於自己的那半小時，我會泡一杯熱洋甘菊，配兩顆 85% 曜石黑巧。深黑色的霧面鐵罐超級有質感，濃郁純粹，真的非常療癒。」
+            </p>
+            <div class="review-author">
+              <div class="author-avatar">🌿</div>
+              <div>
+                <div class="author-name">Clara Chen</div>
+                <div class="author-desc">自由插畫家 ｜ 台中市</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">
+              「網站上的 4-7-8 呼吸器跟背景夜雨聲超讚！我是在準備國考的學生，壓力大到胃痛時都會開著這個網頁配跳跳黑巧豆，心情真的放鬆非常多。」
+            </p>
+            <div class="review-author">
+              <div class="author-avatar">📚</div>
+              <div>
+                <div class="author-name">Kevin Wu</div>
+                <div class="author-desc">研究生 ｜ 高雄市</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         FAQ Accordion
+         ========================================================================== -->
+    <section id="faq" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">COMMON QUESTIONS</span>
+          <h2 class="section-title">常見問題解答</h2>
+          <p class="section-desc">
+            了解更多關於噗噗大大巧克豆的製程、保存與放鬆奧秘。
+          </p>
+        </div>
+
+        <div class="faq-container">
+          <div class="faq-item active">
+            <div class="faq-question">
+              <span>噗噗大大的巧豆為什麼能讓人放鬆？</span>
+              <span class="icon">+</span>
+            </div>
+            <div class="faq-answer">
+              黑巧克力富含天然可可多酚（Polyphenols）、色胺酸（Serotonin 前驅物）與豐富的微量元素「鎂」，有助於調節皮質醇（壓力賀爾蒙）並促進肌肉放鬆。加上外脆內滑的雙重質地所帶來的聽覺與味覺感官轉移，能有效中斷焦慮思維。
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>有添加人工香精或代可可脂嗎？</span>
+              <span class="icon">+</span>
+            </div>
+            <div class="faq-answer">
+              絕對沒有。噗噗大大堅持使用 100% 天然純可可脂，絕不使用廉價氫化植物油（代可可脂）。香氣完全來自可可豆本身低溫深焙的天然堅果芳香與天然香草莢，對身體無負擔。
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>巧克豆應該如何保存以維持最佳口感？</span>
+              <span class="icon">+</span>
+            </div>
+            <div class="faq-answer">
+              純可可脂的熔點約為 34°C。建議存放在 16°C ~ 20°C 的陰涼乾燥處，避免陽光直射。若夏天置於冷藏，建議取出後於室溫靜置 5 分鐘再開罐享用，以體驗最絲滑的天鵝絨融心口感。
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>純素食（Vegan）者可以食用嗎？</span>
+              <span class="icon">+</span>
+            </div>
+            <div class="faq-answer">
+              「85% 曜石極濃黑巧豆」與「70% 晚安洋甘菊薰衣草巧豆」為全素配方，無添加乳製品。其餘含有焦糖脆心或堅果奶餡品項為奶素，在產品外盒上皆有清楚透明標示。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       Site Footer
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <div class="bean-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#110e0c" stroke-width="2.5">
+                <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"></path>
+              </svg>
+            </div>
+            <div>噗噗大大</div>
+          </div>
+          <p>
+            專為一般人打造的極致黑巧放鬆生活品牌。深黑沉穩美學，72 小時慢熬濃醇香，讓每一個日常緊繃都有被治癒的出口。
+          </p>
+        </div>
+
+        <div class="footer-column">
+          <h4>系列導覽</h4>
+          <ul class="footer-links">
+            <li><a href="#products">曜石極濃黑巧 (85%)</a></li>
+            <li><a href="#products">海鹽焦糖脆心巧豆</a></li>
+            <li><a href="#products">深焙整粒榛果巧豆</a></li>
+            <li><a href="#products">晚安洋甘菊薰衣草</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>放鬆體驗</h4>
+          <ul class="footer-links">
+            <li><a href="#relax-zone">巧豆捏捏消煩惱</a></li>
+            <li><a href="#relax-zone">4-7-8 可可呼吸法</a></li>
+            <li><a href="#relax-zone">白噪音工坊</a></li>
+            <li><a href="#mood">今日解憂處方</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>獲取每月放鬆豆盒</h4>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px;">
+            訂閱即可獲得限額神秘口味試吃罐與舒緩音樂歌單：
+          </p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); showToast('感謝訂閱！放鬆指南已寄至您的信箱 ✨');">
+            <input type="email" class="newsletter-input" placeholder="輸入您的 Email..." required>
+            <button type="submit" class="btn-primary" style="padding:10px 18px; font-size:0.85rem;">訂閱</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 噗噗大大 PuPu DaDa. 網站規格驅動製作 ｜ 濃醇香黑巧豆專門</div>
+        <div>設計理念：極黑美學 ｜ 讓人放鬆 ｜ 純可可脂</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       Shopping Cart Drawer
+       ========================================================================== -->
+  <div id="cartOverlay" class="cart-drawer-overlay"></div>
+  <aside id="cartDrawer" class="cart-drawer">
+    <div class="drawer-header">
+      <h3 class="drawer-title">我的放鬆巧豆籃</h3>
+      <button id="closeCartBtn" class="drawer-close">✕</button>
+    </div>
+    <div id="cartItemsContainer" class="drawer-items">
+      <div class="empty-cart-msg">
+        <div style="font-size:2.5rem; margin-bottom:10px;">🍫</div>
+        放鬆籃目前是空的<br>
+        挑選兩罐巧豆，給自己片刻悠閒吧！
+      </div>
+    </div>
+    <div class="drawer-footer">
+      <div class="drawer-total">
+        <span>放鬆總計：</span>
+        <span id="cartTotalPrice" style="color:var(--gold-light);">NT$ 0</span>
+      </div>
+      <button class="btn-primary" style="width:100%; justify-content:center;" onclick="checkout()">
+        進行舒壓結帳
+      </button>
+    </div>
+  </aside>
+
+  <!-- Toast 浮動提醒通知 -->
+  <div id="toast" class="toast-container">已加入放鬆籃 ✨</div>
+
+  <!-- ==========================================================================
+       JavaScript Logic
+       1. 純 Web Audio API 聲學引擎 (捏捏樂 ASMR、放鬆白噪音合成、冥想頻率)
+       2. 互動巧豆捏捏消煩惱遊戲 (動態計數與溫馨語錄)
+       3. 4-7-8 深呼吸放鬆計時與引導視覺
+       4. 產品分類過濾與解憂處方動態切換
+       5. 購物車邏輯與 FAQ 手風琴展開
+       ========================================================================== -->
+  <script>
+    /* ==========================================================================
+       Web Audio API - 原生合成聲音引擎 (無外部 MP3 依賴，保證順暢無延遲)
+       ========================================================================== */
+    class RelaxationSoundEngine {
+      constructor() {
+        this.ctx = null;
+        this.isPlayingAmbient = false;
+        this.currentAmbientType = null;
+        this.ambientNodes = [];
+      }
+
+      init() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          this.ctx = new AudioContext();
+        }
+        if (this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      }
+
+      // 清脆 ASMR 巧豆破裂 / 啵啵音效 (Pop ASMR)
+      playPopSound() {
+        try {
+          this.init();
+          const t = this.ctx.currentTime;
+          
+          // 主音調震盪器
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          
+          // 隨機微調頻率創造自然差異感
+          const baseFreq = 580 + Math.random() * 120;
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(baseFreq, t);
+          osc.frequency.exponentialRampToValueAtTime(140, t + 0.08);
+
+          // 增益曲線 (柔和衰減)
+          gain.gain.setValueAtTime(0.28, t);
+          gain.gain.exponentialRampToValueAtTime(0.001, t + 0.08);
+
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+
+          osc.start(t);
+          osc.stop(t + 0.09);
+        } catch (e) {
+          console.warn("Audio Context init pending user gesture");
+        }
+      }
+
+      // 療癒空靈泛音 (Chime / Zen Bell)
+      playChimeSound() {
+        try {
+          this.init();
+          const t = this.ctx.currentTime;
+          const freqs = [528, 660, 792]; // 528Hz 療癒頻率和弦
+          
+          freqs.forEach((freq, idx) => {
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(freq, t);
+
+            gain.gain.setValueAtTime(0.08 / (idx + 1), t);
+            gain.gain.exponentialRampToValueAtTime(0.0001, t + 2.2);
+
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+
+            osc.start(t + idx * 0.06);
+            osc.stop(t + 2.3);
+          });
+        } catch (e) {
+          console.warn(e);
+        }
+      }
+
+      // 停止環境背景音
+      stopAmbient() {
+        this.ambientNodes.forEach(node => {
+          try {
+            if (node.stop) node.stop();
+            if (node.disconnect) node.disconnect();
+          } catch(e) {}
+        });
+        this.ambientNodes = [];
+        this.isPlayingAmbient = false;
+        this.currentAmbientType = null;
+      }
+
+      // 播放合成白噪音環境音 (雨聲、柴火聲、432Hz 純音)
+      playAmbient(type) {
+        this.init();
+        this.stopAmbient();
+
+        const t = this.ctx.currentTime;
+
+        if (type === 'rain') {
+          // 透過白噪音緩衝區 + 低通濾波器模擬溫和夜雨聲
+          const bufferSize = this.ctx.sampleRate * 2;
+          const noiseBuffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+          const output = noiseBuffer.getChannelData(0);
+          for (let i = 0; i < bufferSize; i++) {
+            output[i] = Math.random() * 2 - 1;
+          }
+
+          const whiteNoise = this.ctx.createBufferSource();
+          whiteNoise.buffer = noiseBuffer;
+          whiteNoise.loop = true;
+
+          const filter = this.ctx.createBiquadFilter();
+          filter.type = 'lowpass';
+          filter.frequency.setValueAtTime(650, t);
+
+          const gain = this.ctx.createGain();
+          gain.gain.setValueAtTime(0.12, t);
+
+          whiteNoise.connect(filter);
+          filter.connect(gain);
+          gain.connect(this.ctx.destination);
+
+          whiteNoise.start();
+          this.ambientNodes.push(whiteNoise, filter, gain);
+
+        } else if (type === 'fire') {
+          // 柴火噼啪 (粉紅噪音 + 偶爾脈衝)
+          const bufferSize = this.ctx.sampleRate * 2;
+          const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+          const data = buffer.getChannelData(0);
+          let b0 = 0, b1 = 0, b2 = 0;
+          for (let i = 0; i < bufferSize; i++) {
+            const white = Math.random() * 2 - 1;
+            b0 = 0.99 * b0 + white * 0.05;
+            b1 = 0.96 * b1 + white * 0.11;
+            b2 = 0.86 * b2 + white * 0.25;
+            data[i] = (b0 + b1 + b2) * 0.25;
+          }
+
+          const noise = this.ctx.createBufferSource();
+          noise.buffer = buffer;
+          noise.loop = true;
+
+          const gain = this.ctx.createGain();
+          gain.gain.setValueAtTime(0.15, t);
+
+          noise.connect(gain);
+          gain.connect(this.ctx.destination);
+
+          noise.start();
+          this.ambientNodes.push(noise, gain);
+
+        } else if (type === 'hum') {
+          // 432Hz 舒眠禪音
+          const osc1 = this.ctx.createOscillator();
+          const osc2 = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+
+          osc1.type = 'sine';
+          osc1.frequency.setValueAtTime(432, t);
+
+          osc2.type = 'sine';
+          osc2.frequency.setValueAtTime(216, t); // 亞八度溫暖低音
+
+          gain.gain.setValueAtTime(0.09, t);
+
+          osc1.connect(gain);
+          osc2.connect(gain);
+          gain.connect(this.ctx.destination);
+
+          osc1.start();
+          osc2.start();
+          this.ambientNodes.push(osc1, osc2, gain);
+        }
+
+        this.isPlayingAmbient = true;
+        this.currentAmbientType = type;
+      }
+    }
+
+    const soundEngine = new RelaxationSoundEngine();
+
+    /* ==========================================================================
+       放鬆語錄庫
+       ========================================================================== */
+    const relaxQuotes = [
+      "「深深吸一口氣，可可的濃郁香氣正在包圍你。」",
+      "「世界的匆忙先暫停，現在是屬於你的可可時光。」",
+      "「深黑巧克力的回甘，就像熬過壓力後的釋懷。」",
+      "「聽見那聲清脆的噗噗了嗎？煩惱已經溜走了一半。」",
+      "「給自己 5 分鐘，你今天已經做得非常棒了。」",
+      "「一口絲滑化開，把所有緊繃的肌肉都鬆開來。」"
+    ];
+
+    /* ==========================================================================
+       互動 1：巧豆捏捏消煩惱 (Pop Clicker)
+       ========================================================================== */
+    let popCount = 0;
+    const popperGrid = document.getElementById('popperGrid');
+    const popCountDisplay = document.getElementById('popCount');
+    const popMessageBox = document.getElementById('popMessageBox');
+    const resetPopperBtn = document.getElementById('resetPopperBtn');
+
+    function createPopperGrid() {
+      popperGrid.innerHTML = '';
+      for (let i = 0; i < 24; i++) {
+        const bean = document.createElement('div');
+        bean.className = 'pop-bean';
+        bean.title = '捏我消煩惱';
+        bean.addEventListener('click', () => {
+          if (!bean.classList.contains('popped')) {
+            bean.classList.add('popped');
+            popCount++;
+            popCountDisplay.textContent = popCount;
+            soundEngine.playPopSound();
+            
+            // 隨機切換療癒小語
+            const randomQuote = relaxQuotes[Math.floor(Math.random() * relaxQuotes.length)];
+            popMessageBox.textContent = randomQuote;
+
+            // 隨機若捏滿全場自動鼓舞
+            if (document.querySelectorAll('.pop-bean.popped').length === 24) {
+              soundEngine.playChimeSound();
+              popMessageBox.textContent = "🎉 太棒了！24 顆煩惱已全數清空，願你此刻心如止水！";
+            }
+          } else {
+            // 已捏過的可以再次彈回
+            bean.classList.remove('popped');
+            soundEngine.playPopSound();
+          }
+        });
+        popperGrid.appendChild(bean);
+      }
+    }
+    createPopperGrid();
+
+    resetPopperBtn.addEventListener('click', () => {
+      soundEngine.playChimeSound();
+      document.querySelectorAll('.pop-bean').forEach(b => b.classList.remove('popped'));
+      popMessageBox.textContent = "「巧豆已全部重置，隨時準備好為你吸走壓力。」";
+    });
+
+    /* ==========================================================================
+       互動 2：4-7-8 可可深呼吸放鬆引導器
+       ========================================================================== */
+    let isBreathing = false;
+    let breathInterval = null;
+    const breathCircle = document.getElementById('breathCircle');
+    const breathStatus = document.getElementById('breathStatus');
+    const breathTimer = document.getElementById('breathTimer');
+    const toggleBreathBtn = document.getElementById('toggleBreathBtn');
+
+    function startBreathingCycle() {
+      let stage = 'inhale'; // inhale (4s) -> hold (7s) -> exhale (8s)
+      let count = 4;
+
+      function updatePhase() {
+        if (!isBreathing) return;
+
+        if (stage === 'inhale') {
+          breathStatus.textContent = "吸氣（感受可可香）";
+          breathTimer.textContent = `${count} 秒`;
+          breathCircle.className = "breathing-circle inhale";
+          if (count === 4) soundEngine.playChimeSound();
+          count--;
+          if (count < 0) {
+            stage = 'hold';
+            count = 7;
+          }
+        } else if (stage === 'hold') {
+          breathStatus.textContent = "屏息（享受靜謐）";
+          breathTimer.textContent = `${count} 秒`;
+          breathCircle.className = "breathing-circle hold";
+          count--;
+          if (count < 0) {
+            stage = 'exhale';
+            count = 8;
+          }
+        } else if (stage === 'exhale') {
+          breathStatus.textContent = "吐氣（吐出所有疲憊）";
+          breathTimer.textContent = `${count} 秒`;
+          breathCircle.className = "breathing-circle exhale";
+          count--;
+          if (count < 0) {
+            stage = 'inhale';
+            count = 4;
+          }
+        }
+      }
+
+      updatePhase();
+      breathInterval = setInterval(updatePhase, 1000);
+    }
+
+    toggleBreathBtn.addEventListener('click', () => {
+      if (!isBreathing) {
+        isBreathing = true;
+        toggleBreathBtn.textContent = "⏸ 暫停呼吸放鬆";
+        toggleBreathBtn.classList.replace('btn-primary', 'btn-secondary');
+        startBreathingCycle();
+      } else {
+        isBreathing = false;
+        clearInterval(breathInterval);
+        toggleBreathBtn.textContent = "▶ 開始呼吸放鬆";
+        toggleBreathBtn.classList.replace('btn-secondary', 'btn-primary');
+        breathCircle.className = "breathing-circle";
+        breathStatus.textContent = "深呼吸放鬆";
+        breathTimer.textContent = "已暫停";
+      }
+    });
+
+    /* ==========================================================================
+       互動 3：白噪音可可工坊
+       ========================================================================== */
+    const ambientCards = document.querySelectorAll('.ambient-card');
+    ambientCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const soundType = card.dataset.sound;
+        const badge = card.querySelector('.state-badge');
+
+        if (card.classList.contains('active')) {
+          card.classList.remove('active');
+          badge.textContent = "點擊播放";
+          soundEngine.stopAmbient();
+          updateHeaderAudioBtn(false);
+        } else {
+          ambientCards.forEach(c => {
+            c.classList.remove('active');
+            c.querySelector('.state-badge').textContent = "點擊播放";
+          });
+          card.classList.add('active');
+          badge.textContent = "播放中...";
+          soundEngine.playAmbient(soundType);
+          updateHeaderAudioBtn(true, card.querySelector('h4').textContent);
+        }
+      });
+    });
+
+    // 頂部導覽列快捷白噪音切換按鈕
+    const globalAudioToggle = document.getElementById('globalAudioToggle');
+    const audioBtnText = document.getElementById('audioBtnText');
+
+    function updateHeaderAudioBtn(playing, title = "放鬆音景") {
+      if (playing) {
+        globalAudioToggle.classList.add('playing');
+        audioBtnText.textContent = title;
+      } else {
+        globalAudioToggle.classList.remove('playing');
+        audioBtnText.textContent = "放鬆音景";
+      }
+    }
+
+    globalAudioToggle.addEventListener('click', () => {
+      if (soundEngine.isPlayingAmbient) {
+        soundEngine.stopAmbient();
+        ambientCards.forEach(c => {
+          c.classList.remove('active');
+          c.querySelector('.state-badge').textContent = "點擊播放";
+        });
+        updateHeaderAudioBtn(false);
+      } else {
+        // 預設開啟柔和夜雨
+        soundEngine.playAmbient('rain');
+        const rainCard = document.querySelector('.ambient-card[data-sound="rain"]');
+        if (rainCard) {
+          rainCard.classList.add('active');
+          rainCard.querySelector('.state-badge').textContent = "播放中...";
+        }
+        updateHeaderAudioBtn(true, "窗邊夜雨中");
+        showToast("已為您開啟放鬆雨聲 🌧️");
+      }
+    });
+
+    /* ==========================================================================
+       放鬆館 Tab 分頁切換
+       ========================================================================== */
+    const relaxTabs = document.querySelectorAll('.relax-tab-btn');
+    const relaxPanels = document.querySelectorAll('.relax-panel');
+
+    relaxTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        relaxTabs.forEach(t => t.classList.remove('active'));
+        relaxPanels.forEach(p => p.classList.remove('active'));
+
+        tab.classList.add('active');
+        const targetId = `tab-${tab.dataset.tab}`;
+        document.getElementById(targetId).classList.add('active');
+      });
+    });
+
+    /* ==========================================================================
+       3D 擬真巧克力豆點擊互動
+       ========================================================================== */
+    const heroBean = document.getElementById('heroBean3D');
+    if (heroBean) {
+      heroBean.addEventListener('click', () => {
+        soundEngine.playPopSound();
+        heroBean.style.transform = "scale(0.92) rotate(-8deg)";
+        setTimeout(() => {
+          heroBean.style.transform = "";
+        }, 200);
+        showToast("啵！感受濃醇黑巧在舌尖化開 🍫");
+      });
+    }
+
+    /* ==========================================================================
+       產品篩選
+       ========================================================================== */
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const productCards = document.querySelectorAll('.product-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+        productCards.forEach(card => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    /* ==========================================================================
+       解憂處方 (Mood Picker)
+       ========================================================================== */
+    const moodPrescriptions = {
+      overload: {
+        badge: "處方代號 #01 • 腦力急救",
+        title: "為您開立：85% 曜石極濃黑巧豆 + 3分鐘閉眼瞑想",
+        text: "高強度的腦力消耗需要純黑巧克力的抗氧化多酚來重啟大腦血流。苦甜的深邃滋味會打斷焦慮迴圈，讓紊亂的思緒迅速降溫沉澱。",
+        ritual: "💡 放鬆小儀式：取出兩顆黑巧豆含在舌面上，不要立刻咀嚼，慢慢等待體溫融化可可脂，深吸氣三次。"
+      },
+      slump: {
+        badge: "處方代號 #02 • 下午甦醒",
+        title: "為您開立：68% 深焙整粒榛果巧豆 + 溫熱黑咖啡",
+        text: "整粒香脆大榛果配合慢焙可可的油脂香氣，清脆的咀嚼感刺激腦部多巴胺分泌，有效驅除哈欠連連的午後睏倦感。",
+        ritual: "💡 放鬆小儀式：起身伸個大懶腰，咬碎一顆整粒榛果，聽聽酥脆的爆裂聲，活力立刻回血！"
+      },
+      blue: {
+        badge: "處方代號 #03 • 心靈暖抱",
+        title: "為您開立：72% 法國海鹽焦糖巧豆 + 一杯燕麥奶",
+        text: "礦物海鹽能引出太妃糖香甜與厚實黑巧的溫潤感，像一層溫柔的毛毯包覆住受挫或低落的情緒。",
+        ritual: "💡 放鬆小儀式：給自己看一段喜愛的貓咪影片或聽一首慢歌，享受甜鹹交織的深情療癒。"
+      },
+      insomnia: {
+        badge: "處方代號 #04 • 晚安好夢",
+        title: "為您開立：70% 晚安洋甘菊薰衣草巧豆 + 4-7-8 呼吸",
+        text: "低咖啡因與普羅旺斯薰衣草的草本放鬆精華，在溫柔的苦甜中讓神經緊繃逐步舒展，安穩進入甜美夢鄉。",
+        ritual: "💡 放鬆小儀式：調暗房間燈光，開啟網站的『窗邊夜雨』白噪音，隨著咀嚼徐徐吐氣。"
+      }
+    };
+
+    const moodBtns = document.querySelectorAll('.mood-btn');
+    const prescriptionCard = document.getElementById('prescriptionCard');
+
+    moodBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        moodBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const mood = btn.dataset.mood;
+        const data = moodPrescriptions[mood];
+
+        prescriptionCard.style.opacity = 0;
+        setTimeout(() => {
+          prescriptionCard.innerHTML = `
+            <span class="prescription-badge">${data.badge}</span>
+            <h3 class="prescription-title">${data.title}</h3>
+            <p class="prescription-text">${data.text}</p>
+            <div class="prescription-ritual">${data.ritual}</div>
+          `;
+          prescriptionCard.style.opacity = 1;
+        }, 150);
+      });
+    });
+
+    /* ==========================================================================
+       FAQ Accordion
+       ========================================================================== */
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      const q = item.querySelector('.faq-question');
+      q.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        faqItems.forEach(i => i.classList.remove('active'));
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
+    });
+
+    /* ==========================================================================
+       購物籃與抽屜管理 (Shopping Drawer & Toast)
+       ========================================================================== */
+    let cart = [];
+    const openCartBtn = document.getElementById('openCartBtn');
+    const closeCartBtn = document.getElementById('closeCartBtn');
+    const cartOverlay = document.getElementById('cartOverlay');
+    const cartDrawer = document.getElementById('cartDrawer');
+    const cartCount = document.getElementById('cartCount');
+    const cartItemsContainer = document.getElementById('cartItemsContainer');
+    const cartTotalPrice = document.getElementById('cartTotalPrice');
+    const toast = document.getElementById('toast');
+
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2600);
+    }
+
+    function toggleCart(open) {
+      if (open) {
+        cartDrawer.classList.add('active');
+        cartOverlay.classList.add('active');
+      } else {
+        cartDrawer.classList.remove('active');
+        cartOverlay.classList.remove('active');
+      }
+    }
+
+    openCartBtn.addEventListener('click', () => toggleCart(true));
+    closeCartBtn.addEventListener('click', () => toggleCart(false));
+    cartOverlay.addEventListener('click', () => toggleCart(false));
+
+    function addToCart(title, price) {
+      soundEngine.playPopSound();
+      cart.push({ title, price });
+      updateCartUI();
+      showToast(`已將「${title}」放入放鬆籃 🍫`);
+    }
+
+    function updateCartUI() {
+      cartCount.textContent = cart.length;
+      if (cart.length === 0) {
+        cartItemsContainer.innerHTML = `
+          <div class="empty-cart-msg">
+            <div style="font-size:2.5rem; margin-bottom:10px;">🍫</div>
+            放鬆籃目前是空的<br>
+            挑選兩罐巧豆，給自己片刻悠閒吧！
+          </div>
+        `;
+        cartTotalPrice.textContent = 'NT$ 0';
+      } else {
+        let total = 0;
+        cartItemsContainer.innerHTML = '';
+        cart.forEach((item, index) => {
+          total += item.price;
+          const row = document.createElement('div');
+          row.className = 'cart-item';
+          row.innerHTML = `
+            <div>
+              <div class="cart-item-title">${item.title}</div>
+              <div class="cart-item-price">NT$ ${item.price}</div>
+            </div>
+            <button onclick="removeFromCart(${index})" style="color:var(--text-dim); font-size:1.1rem; padding:4px;">✕</button>
+          `;
+          cartItemsContainer.appendChild(row);
+        });
+        cartTotalPrice.textContent = `NT$ ${total}`;
+      }
+    }
+
+    window.removeFromCart = function(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+    };
+
+    window.checkout = function() {
+      if (cart.length === 0) {
+        showToast("放鬆籃內尚未選入巧豆喔！");
+        return;
+      }
+      soundEngine.playChimeSound();
+      showToast("🎉 訂單已收到！正在為您現烘封罐，祝您放鬆愉快！");
+      cart = [];
+      updateCartUI();
+      setTimeout(() => toggleCart(false), 1500);
+    };
+
+    // 移動端簡易選單開關
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.querySelector('.nav-links');
+    if (mobileMenuBtn && navLinks) {
+      mobileMenuBtn.addEventListener('click', () => {
+        const isHidden = window.getComputedStyle(navLinks).display === 'none';
+        navLinks.style.display = isHidden ? 'flex' : 'none';
+        if (isHidden) {
+          navLinks.style.flexDirection = 'column';
+          navLinks.style.position = 'absolute';
+          navLinks.style.top = '76px';
+          navLinks.style.left = '0';
+          navLinks.style.width = '100%';
+          navLinks.style.background = 'rgba(17, 16, 21, 0.98)';
+          navLinks.style.padding = '20px';
+          navLinks.style.borderBottom = '1px solid var(--border-subtle)';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
+
